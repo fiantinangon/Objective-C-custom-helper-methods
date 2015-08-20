@@ -3,9 +3,9 @@
 #define COLOR_CUSTOM_CLEAR_COLOR [UIColor clearColor]
 #define COLOR_CUSTOM_DEFAULT_COLOR [UIColor colorWithRed:189.0f/255.0f green:152.0f/255.0f blue:112.0f/255.0f alpha:1.0f]
 
-#define FONT_LATO_REGULAR_SIZE_10 [UIFont fontWithName:FONT_LATO_REGULAR_APPs size:10.0f]
+#define YOUR_FONT_NAME_WITH_SIZE [UIFont fontWithName:FONT_NAME size:10.0f]
 
-#define IMAGE_ARROW_DOWN_GRAY [UIImage imageNamed:@"icon_arrow_down_gray"]
+#define YOUR_ARROW_IMAGE [UIImage imageNamed:@"arrow_image_name"]
 
 #define SYSTEM_VERSION_LESS_THAN(v)([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 
@@ -206,7 +206,7 @@
         
         attributesLink = @{
                            NSForegroundColorAttributeName:colorFont,
-                           NSFontAttributeName : FONT_LATO_REGULAR_SIZE_10,
+                           NSFontAttributeName : YOUR_FONT_NAME_WITH_SIZE,
                            NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle),
                            NSUnderlineColorAttributeName:colorUnderLine
                            };
@@ -214,7 +214,7 @@
         
         attributesLink = @{
                            NSForegroundColorAttributeName:colorFont,
-                           NSFontAttributeName : FONT_LATO_REGULAR_SIZE_10,
+                           NSFontAttributeName : YOUR_FONT_NAME_WITH_SIZE,
                            NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)
                            };
     }
@@ -359,6 +359,36 @@
 }
 #pragma mark -
 #pragma mark - VIEW / BUTTON / IMAGE METHODS
+
++ (void)setButtonWithArrow:(UIButton *)button withTitle:(NSString *)string {
+    
+    CALayer *mLayerbutton = [button layer];
+    [mLayerbutton setMasksToBounds:YES];
+    
+    UIImageView *ImageArrowDown;
+    
+    if (!ImageArrowDown) {
+        ImageArrowDown = [[UIImageView alloc]initWithImage:YOUR_ARROW_IMAGE];
+        
+    }
+    
+    ImageArrowDown.frame = CGRectMake(0, 0, 9, 8);
+    
+    button.contentMode = UIViewContentModeScaleAspectFill;
+    [button addSubview:ImageArrowDown];
+    
+    float buttonx = (button.bounds.size.width - ImageArrowDown.frame.size.width) - 10.0f;
+    float buttony = (button.bounds.origin.y + button.bounds.size.height - ImageArrowDown.frame.size.height)/2.0f + 1.0f ;
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    
+    ImageArrowDown.frame = CGRectMake(buttonx, buttony, 9, 8);
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y, button.frame.size.width, button.frame.size.height);
+    
+    [button setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+    [button setTitle:string forState:UIControlStateNormal];
+    
+}
 
 + (void)setImageToCircle:(UIImageView *)image
               withBorder:(BOOL)isWithBorder
