@@ -537,6 +537,9 @@
     return image;
 }
 
+#pragma mark -
+#pragma mark - COLOR WITH HEX VALUE
+
 + (UIColor*)colorWithHexString:(NSString*)hex
 {
     NSString *cString = [[hex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
