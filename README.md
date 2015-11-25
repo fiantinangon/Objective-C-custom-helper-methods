@@ -1,7 +1,7 @@
 # iOS Objective-C Custom Helper Methods
 This utilities file contain helpers method to help you. Please contribute to add more helper !
 
-# Helper List
+# Helper list
 
 - Set Color with Hex Code
 - Customize Label
@@ -17,4 +17,10 @@ This utilities file contain helpers method to help you. Please contribute to add
 - Atributed Underline String
 - Attributed arrow
 - Set Image with Color
+- Check network connection (connect or disconnect)
+- 
+
+# How to use
+
+(will update soon)
 
