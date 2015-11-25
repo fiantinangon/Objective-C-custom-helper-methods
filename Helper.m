@@ -15,10 +15,10 @@
 #pragma mark - LABEL METHODS 
 
 + (void)setCustomizeLabel:(UILabel *)label
-                   WithString:(NSString *)string
-           WithParagraphStyle:(NSTextAlignment*)alignment
-                     WithFont:(UIFont *)font
-                WithTextColor:(UIColor *)color {
+               withString:(NSString *)string
+       withParagraphStyle:(NSTextAlignment *)alignment
+                 withFont:(UIFont *)font
+            withTextColor:(UIColor *)color {
     
     NSMutableParagraphStyle *paragraphStyles = [[NSMutableParagraphStyle alloc] init];
     paragraphStyles.alignment = alignment;
@@ -45,7 +45,7 @@
              withText:(NSString *)text
          withDistance:(float)distance
              withFont:(UIFont *)font
-            withTextColor:(UIColor *)colorText {
+        withTextColor:(UIColor *)colorText {
     
     if (isEmpty(text)) {
         
@@ -157,7 +157,6 @@
     return mRectString;
 }
 
-
 + (CGRect)getStringRectFrame:(NSString *)string
                     withFont:(UIFont *)font
                 withMaxWidth:(CGFloat)MaxWidth
@@ -224,9 +223,8 @@
     return mStringAtributeLearnMore;
 }
 
-
 + (NSMutableAttributedString *)atributedAddArrow:(NSString *)string
-                                              fontColor:(UIColor *)colorFont
+                                       fontColor:(UIColor *)colorFont
                                      arrrowColor:(UIColor *)colorUnderLine
                                         fontText:(UIFont *)mFont
                                        fontArrow:(UIFont *)mFontArrow {
@@ -266,7 +264,6 @@
     
     return mStringAtributeText;
 }
-
 
 + (BOOL)isAlphaNumericString:(NSString *)mString {
     NSCharacterSet *mCharacterSet = [NSCharacterSet alphanumericCharacterSet];
@@ -357,6 +354,7 @@
 
     
 }
+
 #pragma mark -
 #pragma mark - VIEW / BUTTON / IMAGE METHODS
 
@@ -552,8 +550,7 @@
     
 }
 
-+ (UIImage *)imageWithColor:(UIColor *)color
-{
++ (UIImage *)imageWithColor:(UIColor *)color {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -570,8 +567,7 @@
 #pragma mark -
 #pragma mark - COLOR WITH HEX VALUE
 
-+ (UIColor*)colorWithHexString:(NSString*)hex
-{
++ (UIColor*)colorWithHexString:(NSString *)hex {
     NSString *cString = [[hex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     
     // String should be 6 or 8 characters
@@ -604,6 +600,27 @@
                            green:((float) g / 255.0f)
                             blue:((float) b / 255.0f)
                            alpha:1.0f];
+}
+
+#pragma mark -
+#pragma mark - NETWORK CONNECTION
+
++ (BOOL)isNetworkAvailable {
+    CFNetDiagnosticRef dReference;
+    dReference = CFNetDiagnosticCreateWithURL (NULL, (__bridge CFURLRef)[NSURL URLWithString:@"www.google.com"]);
+    
+    CFNetDiagnosticStatus status;
+    status = CFNetDiagnosticCopyNetworkStatusPassively (dReference, NULL);
+    
+    CFRelease (dReference);
+    
+    if (status == kCFNetDiagnosticConnectionUp) {
+        // Connection is available
+        return YES;
+    } else {
+        // Connection is down
+        return NO;
+    }
 }
 
 @end
