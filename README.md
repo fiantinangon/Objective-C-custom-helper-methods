@@ -17,8 +17,7 @@ This utilities file contain helpers method to help you. Please contribute to add
 - Atributed Underline String
 - Attributed arrow
 - Set Image with Color
-- Check network connection (connect or disconnect)
-- 
+- Check connection status
 
 # How to use
 
